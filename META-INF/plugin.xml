@@ -1,0 +1,29 @@
+<idea-plugin version="2">
+  <id>com.atsebak.kernel</id>
+  <name>Linux Kernel Support</name>
+  <version>1.0</version>
+  <vendor email="ahmad@atsebak.com" url="http://www.atsebak.com">At sebak</vendor>
+
+  <description><![CDATA[
+      Linux Kernel Support
+    ]]></description>
+
+  <change-notes><![CDATA[
+    ]]>
+  </change-notes>
+
+  <idea-version since-build="131"/>
+
+  <extensions defaultExtensionNs="com.intellij">
+  </extensions>
+
+  <application-components>
+  </application-components>
+
+  <project-components>
+  </project-components>
+
+  <actions>
+  </actions>
+
+</idea-plugin>
