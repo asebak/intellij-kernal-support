@@ -15,6 +15,7 @@
   <idea-version since-build="131"/>
 
   <extensions defaultExtensionNs="com.intellij">
+    <projectTemplatesFactory implementation="com.atsebak.kernel.project.KernelSupportProjectTemplatesFactory"/>
   </extensions>
 
   <application-components>
