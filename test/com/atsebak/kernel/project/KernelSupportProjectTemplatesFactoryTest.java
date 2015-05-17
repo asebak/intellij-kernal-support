@@ -1,17 +1,21 @@
 package com.atsebak.kernel.project;
 
-import org.junit.After;
-import org.junit.Before;
+import com.atsebak.kernel.project.builder.CppModuleBuilder;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 
 public class KernelSupportProjectTemplatesFactoryTest {
-
-    @Before
-    public void setUp() throws Exception {
-
+    @Test
+    public void testAndroidBSPId() {
+        CppModuleBuilder.AndroidBSP androidBSP = new CppModuleBuilder.AndroidBSP();
+        assertEquals(androidBSP.getBuilderId(), "linux.android.bsp");
     }
 
-    @After
-    public void tearDown() throws Exception {
-
+    @Test
+    public void testDriverId() {
+        CppModuleBuilder.Driver driver = new CppModuleBuilder.Driver();
+        assertEquals(driver.getBuilderId(), "linux.driver");
     }
 }
