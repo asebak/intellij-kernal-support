@@ -46,7 +46,8 @@ public class KernelSupportProjectTemplatesFactory extends ProjectTemplatesFactor
         }
         ProjectTemplate[] templates = {
                 new CppProjectTemplate(DEVICE_DRIVER, "Linux Device Driver Kernel Module", new CppModuleBuilder.Driver()),
-                new CppProjectTemplate(ANDROID_BSP, "Android Board Support Package", new CppModuleBuilder.AndroidBSP())
+                new CppProjectTemplate(ANDROID_BSP, "Android Board Support Package Project to be used with the" +
+                        " <a href='https://source.android.com/source/initializing.html'>Android Kernel</a>", new CppModuleBuilder.AndroidBSP())
         };
         return templates;
     }
