@@ -128,6 +128,34 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
         mySourcePaths.add(sourcePathInfo);
     }
 
+    public KernelProjectType getKernelProjectType() {
+        return kernelProjectType;
+    }
+
+    public Sdk getSdk() {
+        return sdk;
+    }
+
+    public void setSdk(Sdk sdk) {
+        this.sdk = sdk;
+    }
+
+    public EntryPointType getEntryPointType() {
+        return entryPointType;
+    }
+
+    public void setEntryPointType(EntryPointType entryPointType) {
+        this.entryPointType = entryPointType;
+    }
+
+    public BuildFileType getBuildFileType() {
+        return buildFileType;
+    }
+
+    public void setBuildFileType(BuildFileType buildFileType) {
+        this.buildFileType = buildFileType;
+    }
+
     public static class AndroidBSP extends CppModuleBuilder {
         public AndroidBSP() {
             super(KernelProjectType.ANDROIDBSP);

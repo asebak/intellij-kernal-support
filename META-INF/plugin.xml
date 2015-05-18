@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.atsebak.kernel</id>
   <name>Linux Kernel Support</name>
-  <version>1.0</version>
+  <version>0.1</version>
   <vendor email="ahmad@atsebak.com" url="http://www.atsebak.com">At sebak</vendor>
 
   <description><![CDATA[
@@ -22,8 +22,11 @@
     <component>
       <implementation-class>com.atsebak.kernel.project.builder.CppSdkType</implementation-class>
     </component>
+    <!--<component>-->
+    <!--<implementation-class>com.atsebak.kernel.project.builder.CppModuleType</implementation-class>-->
+    <!--</component>-->
     <component>
-      <implementation-class>com.atsebak.kernel.project.builder.CppModuleType</implementation-class>
+      <implementation-class>com.atsebak.kernel.utils.CppSupportSettings</implementation-class>
     </component>
   </application-components>
 

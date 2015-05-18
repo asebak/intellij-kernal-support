@@ -2,6 +2,7 @@ package com.atsebak.kernel.project.builder;
 
 
 import com.atsebak.kernel.locale.KernelBundle;
+import com.atsebak.kernel.project.ui.DeviceDriverStep;
 import com.atsebak.kernel.utils.KernelIcons;
 import com.intellij.ide.util.projectWizard.ModuleWizardStep;
 import com.intellij.ide.util.projectWizard.ProjectWizardStepFactory;
@@ -10,13 +11,11 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.module.ModuleTypeManager;
-import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.util.List;
 
 public class CppModuleType extends ModuleType<CppModuleBuilder> implements ApplicationComponent {
     public CppModuleType() {
@@ -36,14 +35,26 @@ public class CppModuleType extends ModuleType<CppModuleBuilder> implements Appli
     }
 
     public ModuleWizardStep[] createWizardSteps(WizardContext wizardContext, CppModuleBuilder cppModuleBuilder, ModulesProvider modulesProvider) {
-        final List<Sdk> list = CppSdkType.getInstance().getCppSdks();
+        //todo place wizard forms
+//        final List<Sdk> sdks = CppSdkType.getInstance().getCppSdks();
+//        if(cppModuleBuilder != nu)
+//        switch (cppModuleBuilder.getKernelProjectType()) {
+//            case DRIVER:
+////                DeviceDriverStep deviceDriverStep = new DeviceDriverStep(wizardContext, cppModuleBuilder);
+////                ChooseCppSdkStep chooseCppSdkStep = new ChooseCppSdkStep(wizardContext, cppModuleBuilder);
+////                return new ModuleWizardStep[]{deviceDriverStep};
+//            case ANDROIDBSP:
+//                break;
+//        }
+//        return null;
         final ModuleWizardStep sourceModuleWizardStep = ProjectWizardStepFactory.getInstance().createSourcePathsStep(wizardContext, cppModuleBuilder, null, null);
 //        final ModuleWizardStep createSampleCode = new CreateEntryCodeStep(cppModuleBuilder);
 
 //        if (list.size() == 0) {
 //            return new ModuleWizardStep[] { new ChooseCppSdkStep(cppModuleBuilder, wizardContext),sourceModuleWizardStep, createSampleCode };
 //        }
-        return new ModuleWizardStep[]{sourceModuleWizardStep};
+        DeviceDriverStep deviceDriverStep = new DeviceDriverStep(wizardContext, cppModuleBuilder);
+        return new ModuleWizardStep[]{sourceModuleWizardStep, deviceDriverStep};
 //        return new ModuleWizardStep[] { sourceModuleWizardStep, createSampleCode };
     }
 
@@ -62,7 +73,7 @@ public class CppModuleType extends ModuleType<CppModuleBuilder> implements Appli
     @NonNls
     @NotNull
     public String getComponentName() {
-        return "CppTools.ModuleType";
+        return "LinuxKernel.ModuleType";
     }
 
     public void initComponent() {
