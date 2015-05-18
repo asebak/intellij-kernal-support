@@ -16,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
+import java.io.File;
 
 public class CppSupportSettings implements ApplicationComponent, JDOMExternalizable, Configurable {
     private static CppSupportSettings instance;
@@ -34,6 +35,18 @@ public class CppSupportSettings implements ApplicationComponent, JDOMExternaliza
 
     public static boolean isGccPath(VirtualFile virtualFile) {
         return !virtualFile.isDirectory() && virtualFile.getNameWithoutExtension().indexOf("gcc") != -1;
+    }
+
+    public static String getKernelHeadersPath() {
+        File directory = new File("/usr/src/");
+        String os = System.getProperty("os.version");
+        File[] fList = directory.listFiles();
+        for (File file : fList) {
+            if (file.getAbsolutePath().contains(os)) {
+                return file.getAbsolutePath();
+            }
+        }
+        return "";
     }
 
     @Override

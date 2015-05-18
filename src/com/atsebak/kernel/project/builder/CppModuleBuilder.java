@@ -1,13 +1,18 @@
 package com.atsebak.kernel.project.builder;
 
+import com.atsebak.kernel.project.ui.DeviceDriverStep;
 import com.atsebak.kernel.utils.KernelIcons;
 import com.intellij.ide.util.projectWizard.ModuleBuilder;
+import com.intellij.ide.util.projectWizard.ModuleWizardStep;
 import com.intellij.ide.util.projectWizard.SourcePathsBuilder;
+import com.intellij.ide.util.projectWizard.WizardContext;
 import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.roots.ModifiableRootModel;
+import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
 import com.intellij.openapi.util.Pair;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -28,6 +33,11 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
 
     public CppModuleBuilder(KernelProjectType kernelProjectType) {
         this.kernelProjectType = kernelProjectType;
+    }
+
+    @Override
+    public ModuleWizardStep[] createWizardSteps(WizardContext wizardContext, ModulesProvider modulesProvider) {
+        return super.createWizardSteps(wizardContext, modulesProvider);
     }
 
     public void setupRootModel(ModifiableRootModel modifiableRootModel) throws ConfigurationException {
@@ -100,7 +110,6 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
     }
 
     public ModuleType getModuleType() {
-//        return null;
         return CppModuleType.getInstance();
     }
 
@@ -161,16 +170,10 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
             super(KernelProjectType.ANDROIDBSP);
         }
 
-//        @Override
-//        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
-//            return ModuleWizardStep.EMPTY_ARRAY;
-//        }
-
-//        @Nullable
-//        @Override
-//        public ModuleWizardStep getCustomOptionsStep(WizardContext context, Disposable parentDisposable) {
-//            return super.getCustomOptionsStep(context, parentDisposable);
-//        }
+        @Override
+        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
+            return ModuleWizardStep.EMPTY_ARRAY;
+        }
 
         @Override
         public String getBuilderId() {
@@ -193,17 +196,11 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
             super(KernelProjectType.DRIVER);
         }
 
-//        @Override
-//        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
-//            super.createWizardSteps()
-//            return ModuleWizardStep.EMPTY_ARRAY;
-//        }
-
-//        @Nullable
-//        @Override
-//        public ModuleWizardStep getCustomOptionsStep(WizardContext context, Disposable parentDisposable) {
-//            return super.getCustomOptionsStep(context, parentDisposable);
-//        }
+        @Override
+        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
+            DeviceDriverStep deviceDriverStep = new DeviceDriverStep(wizardContext, this);
+            return new ModuleWizardStep[]{deviceDriverStep};
+        }
 
         @Override
         public String getBuilderId() {
