@@ -2,16 +2,12 @@ package com.atsebak.kernel.project.builder;
 
 import com.atsebak.kernel.utils.KernelIcons;
 import com.intellij.ide.util.projectWizard.ModuleBuilder;
-import com.intellij.ide.util.projectWizard.ModuleWizardStep;
 import com.intellij.ide.util.projectWizard.SourcePathsBuilder;
-import com.intellij.ide.util.projectWizard.WizardContext;
 import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.roots.ModifiableRootModel;
-import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
 import com.intellij.openapi.util.Pair;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -104,8 +100,8 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
     }
 
     public ModuleType getModuleType() {
-        return null;
-//        return CppModuleType.getInstance();
+//        return null;
+        return CppModuleType.getInstance();
     }
 
     @Nullable
@@ -132,31 +128,21 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
         mySourcePaths.add(sourcePathInfo);
     }
 
-    public void setEntryPointType(EntryPointType entryPointType) {
-        this.entryPointType = entryPointType;
-    }
-
-    public void setBuildFileType(BuildFileType buildFileType) {
-        this.buildFileType = buildFileType;
-    }
-
-    public Sdk getSdk() {
-        return sdk;
-    }
-
-    public void setSdk(Sdk mySdk) {
-        this.sdk = mySdk;
-    }
-
     public static class AndroidBSP extends CppModuleBuilder {
         public AndroidBSP() {
             super(KernelProjectType.ANDROIDBSP);
         }
 
-        @Override
-        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
-            return ModuleWizardStep.EMPTY_ARRAY;
-        }
+//        @Override
+//        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
+//            return ModuleWizardStep.EMPTY_ARRAY;
+//        }
+
+//        @Nullable
+//        @Override
+//        public ModuleWizardStep getCustomOptionsStep(WizardContext context, Disposable parentDisposable) {
+//            return super.getCustomOptionsStep(context, parentDisposable);
+//        }
 
         @Override
         public String getBuilderId() {
@@ -179,10 +165,17 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
             super(KernelProjectType.DRIVER);
         }
 
-        @Override
-        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
-            return ModuleWizardStep.EMPTY_ARRAY;
-        }
+//        @Override
+//        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
+//            super.createWizardSteps()
+//            return ModuleWizardStep.EMPTY_ARRAY;
+//        }
+
+//        @Nullable
+//        @Override
+//        public ModuleWizardStep getCustomOptionsStep(WizardContext context, Disposable parentDisposable) {
+//            return super.getCustomOptionsStep(context, parentDisposable);
+//        }
 
         @Override
         public String getBuilderId() {

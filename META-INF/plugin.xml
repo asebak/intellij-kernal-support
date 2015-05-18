@@ -19,6 +19,12 @@
   </extensions>
 
   <application-components>
+    <component>
+      <implementation-class>com.atsebak.kernel.project.builder.CppSdkType</implementation-class>
+    </component>
+    <component>
+      <implementation-class>com.atsebak.kernel.project.builder.CppModuleType</implementation-class>
+    </component>
   </application-components>
 
   <project-components>
