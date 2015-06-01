@@ -217,4 +217,56 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
             return KernelIcons.Driver;
         }
     }
+
+    public static class AVR extends CppModuleBuilder {
+        public AVR() {
+            super(KernelProjectType.AVR);
+        }
+
+        @Override
+        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
+            return ModuleWizardStep.EMPTY_ARRAY;
+        }
+
+        @Override
+        public String getBuilderId() {
+            return "embeddedsystem.avr";
+        }
+
+        @Override
+        public Icon getBigIcon() {
+            return KernelIcons.AVR;
+        }
+
+        @Override
+        public Icon getNodeIcon() {
+            return KernelIcons.AVR;
+        }
+    }
+
+    public static class Arduino extends CppModuleBuilder {
+        public Arduino() {
+            super(KernelProjectType.ARDUINO);
+        }
+
+        @Override
+        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
+            return ModuleWizardStep.EMPTY_ARRAY;
+        }
+
+        @Override
+        public String getBuilderId() {
+            return "embeddedsystem.arduino";
+        }
+
+        @Override
+        public Icon getBigIcon() {
+            return KernelIcons.Arduino;
+        }
+
+        @Override
+        public Icon getNodeIcon() {
+            return KernelIcons.Arduino;
+        }
+    }
 }
