@@ -1,5 +1,6 @@
 package com.atsebak.kernel.project.builder;
 
+import com.atsebak.kernel.project.ui.DeviceDriverStep;
 import com.atsebak.kernel.utils.KernelIcons;
 import com.intellij.ide.util.projectWizard.ModuleBuilder;
 import com.intellij.ide.util.projectWizard.ModuleWizardStep;
@@ -32,6 +33,11 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
 
     public CppModuleBuilder(KernelProjectType kernelProjectType) {
         this.kernelProjectType = kernelProjectType;
+    }
+
+    @Override
+    public ModuleWizardStep[] createWizardSteps(WizardContext wizardContext, ModulesProvider modulesProvider) {
+        return super.createWizardSteps(wizardContext, modulesProvider);
     }
 
     public void setupRootModel(ModifiableRootModel modifiableRootModel) throws ConfigurationException {
@@ -104,8 +110,7 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
     }
 
     public ModuleType getModuleType() {
-        return null;
-//        return CppModuleType.getInstance();
+        return CppModuleType.getInstance();
     }
 
     @Nullable
@@ -132,20 +137,32 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
         mySourcePaths.add(sourcePathInfo);
     }
 
-    public void setEntryPointType(EntryPointType entryPointType) {
-        this.entryPointType = entryPointType;
-    }
-
-    public void setBuildFileType(BuildFileType buildFileType) {
-        this.buildFileType = buildFileType;
+    public KernelProjectType getKernelProjectType() {
+        return kernelProjectType;
     }
 
     public Sdk getSdk() {
         return sdk;
     }
 
-    public void setSdk(Sdk mySdk) {
-        this.sdk = mySdk;
+    public void setSdk(Sdk sdk) {
+        this.sdk = sdk;
+    }
+
+    public EntryPointType getEntryPointType() {
+        return entryPointType;
+    }
+
+    public void setEntryPointType(EntryPointType entryPointType) {
+        this.entryPointType = entryPointType;
+    }
+
+    public BuildFileType getBuildFileType() {
+        return buildFileType;
+    }
+
+    public void setBuildFileType(BuildFileType buildFileType) {
+        this.buildFileType = buildFileType;
     }
 
     public static class AndroidBSP extends CppModuleBuilder {
@@ -181,7 +198,8 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
 
         @Override
         public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
-            return ModuleWizardStep.EMPTY_ARRAY;
+            DeviceDriverStep deviceDriverStep = new DeviceDriverStep(wizardContext, this);
+            return new ModuleWizardStep[]{deviceDriverStep};
         }
 
         @Override
@@ -197,6 +215,58 @@ public class CppModuleBuilder extends ModuleBuilder implements SourcePathsBuilde
         @Override
         public Icon getNodeIcon() {
             return KernelIcons.Driver;
+        }
+    }
+
+    public static class AVR extends CppModuleBuilder {
+        public AVR() {
+            super(KernelProjectType.AVR);
+        }
+
+        @Override
+        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
+            return ModuleWizardStep.EMPTY_ARRAY;
+        }
+
+        @Override
+        public String getBuilderId() {
+            return "embeddedsystem.avr";
+        }
+
+        @Override
+        public Icon getBigIcon() {
+            return KernelIcons.AVR;
+        }
+
+        @Override
+        public Icon getNodeIcon() {
+            return KernelIcons.AVR;
+        }
+    }
+
+    public static class Arduino extends CppModuleBuilder {
+        public Arduino() {
+            super(KernelProjectType.ARDUINO);
+        }
+
+        @Override
+        public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
+            return ModuleWizardStep.EMPTY_ARRAY;
+        }
+
+        @Override
+        public String getBuilderId() {
+            return "embeddedsystem.arduino";
+        }
+
+        @Override
+        public Icon getBigIcon() {
+            return KernelIcons.Arduino;
+        }
+
+        @Override
+        public Icon getNodeIcon() {
+            return KernelIcons.Arduino;
         }
     }
 }
